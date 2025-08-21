@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 public class State<S extends Enum<S>, A extends Enum<A>> {
     private S state;
-    private S states;
-    private A actions;
-    List<State<S, A>> nodes;
+    private List<A> actions;
+    private List<State<S, A>> nodes;
 }

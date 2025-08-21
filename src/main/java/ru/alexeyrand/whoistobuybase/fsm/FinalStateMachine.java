@@ -15,7 +15,7 @@ public class FinalStateMachine<S extends Enum<S>, A extends Enum<A>, E extends S
     public S transfer(E entity, A action) {
         S currentState = getCurrentState(entity);
         List<A> actions = actionMap.get(currentState);
-
+        State<S, A> res = helper(head, currentState);
         return currentState;
     }
 
