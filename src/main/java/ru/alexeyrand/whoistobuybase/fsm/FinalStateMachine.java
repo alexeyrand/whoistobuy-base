@@ -11,12 +11,7 @@ import java.util.Map;
 @Getter
 public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWithState<S>, E extends Stateful<S>> {
     private State<S, A> head;
-    private Map<S, List<A>> actionMap;
     private List<S> alreadyPass = new ArrayList<>();
-
-    public FinalStateMachine(InitializationStateAndAction initializationStateAndAction) {
-        initializationStateAndAction.init();
-    }
 
     public E moveToState(E entity, A action) {
         State<S, A> result = new State<>();
