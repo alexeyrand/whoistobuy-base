@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.alexeyrand.whoistobuybase.entities.User;
 import ru.alexeyrand.whoistobuybase.fsm.FinalStateMachine;
 //import ru.alexeyrand.whoistobuybase.fsm.impl.UserFactory;
-import ru.alexeyrand.whoistobuybase.fsm.state.UserState;
 import ru.alexeyrand.whoistobuybase.repositories.BaseRepository;
 import ru.alexeyrand.whoistobuybase.repositories.UserRepository;
 

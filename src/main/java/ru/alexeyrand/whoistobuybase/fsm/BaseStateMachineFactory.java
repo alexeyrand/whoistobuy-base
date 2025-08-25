@@ -8,8 +8,11 @@ import java.util.Map;
 
 @Getter
 @Setter
-public abstract class BaseStateMachineFactory<S extends Enum<S>, A extends Enum<A>, E extends Stateful<S>> {
+public abstract class BaseStateMachineFactory<S extends StateWithAction<A>, A extends ActionWithState<S>, E extends Stateful<S>> {
     private Integer value;
+
+    public BaseStateMachineFactory() {
+    }
 
     /**
      * Возвращает машину состояний - класс для работы с состояниями сущности

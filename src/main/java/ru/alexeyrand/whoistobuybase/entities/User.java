@@ -5,8 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.*;
-import ru.alexeyrand.whoistobuybase.fsm.Stateful;
-import ru.alexeyrand.whoistobuybase.fsm.state.UserState;
+
 
 /**
  * Сущность пользователя
@@ -18,7 +17,7 @@ import ru.alexeyrand.whoistobuybase.fsm.state.UserState;
 @Builder
 @Getter
 @Setter
-public class User extends BaseEntity implements Stateful<UserState> {
+public class User extends BaseEntity {
     @Column(name = "USERNAME")
     private String username;
     @Column(name = "PASSWORD")
@@ -33,18 +32,7 @@ public class User extends BaseEntity implements Stateful<UserState> {
     private Integer age;
     @Column(name = "CHAT_ID")
     private Long chatId;
-    @Column(name = "STATE")
-    private UserState state = UserState.IDLE;
 
-    @Override
-    public UserState getCurrentState() {
-        return state;
-    }
-
-    @Override
-    public void setCurrentState(UserState state) {
-        this.state = state;
-    }
 }
 
 
