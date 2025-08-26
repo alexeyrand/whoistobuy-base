@@ -14,6 +14,7 @@ public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWit
     private List<S> alreadyPass = new ArrayList<>();
 
     public E moveToState(E entity, A action) {
+        alreadyPass.clear();
         State<S, A> result = new State<>();
         S currentState = entity.getState();
         helper(head, currentState, result);
@@ -32,7 +33,7 @@ public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWit
             result.setState(node.getState());
         }
         alreadyPass.add(node.getState());
-        if (node.getNodes() != null && !node.getNodes().isEmpty() && result != node) {
+        if (node.getNodes() != null && !node.getNodes().isEmpty() && result.getState() != node.getState()) {
             List<State<S, A>> nodes = node.getNodes();
             for (State<S, A> n : nodes) {
                 if (!alreadyPass.contains(n.getState()))
