@@ -23,10 +23,17 @@ public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWit
         if (s.getActionList().contains(action)) {
             S newState = action.getState();
             entity.setState(newState);
+            createHistory(currentState, newState, action);
         }
         return entity;
     }
 
+    /**
+     * Пока метод для переопределения. TODO: сделать базовым
+     */
+    public void createHistory(StateWithAction<A> beforeState, StateWithAction<A> afterState, ActionWithState<S> action) {
+
+    }
 
     private void helper(State<S, A> node, S currentState, State<S, A> result) {
         if (node.getState() == currentState) {
