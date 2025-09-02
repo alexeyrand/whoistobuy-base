@@ -2,6 +2,7 @@ package ru.alexeyrand.whoistobuybase.fsm;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.alexeyrand.whoistobuybase.services.BaseService;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,5 @@ public abstract class BaseStateMachineFactory<S extends StateWithAction<A>, A ex
      * Возвращает машину состояний - класс для работы с состояниями сущности
      * */
     public abstract FinalStateMachine<S, A, E> createStateMachine();
+
 }

@@ -2,6 +2,9 @@ package ru.alexeyrand.whoistobuybase.fsm;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.alexeyrand.whoistobuybase.entities.BaseEntity;
+import ru.alexeyrand.whoistobuybase.services.BaseService;
+import ru.alexeyrand.whoistobuybase.services.Historical;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.Map;
 public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWithState<S>, E extends Stateful<S>> {
     private State<S, A> head;
     private List<S> alreadyPass = new ArrayList<>();
+    private Historical<S, A> historicalService;
 
     public E moveToState(E entity, A action) {
         alreadyPass.clear();
@@ -23,16 +27,9 @@ public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWit
         if (s.getActionList().contains(action)) {
             S newState = action.getState();
             entity.setState(newState);
-            createHistory(currentState, newState, action);
+            historicalService.createHistory(currentState, newState, action);
         }
         return entity;
-    }
-
-    /**
-     * Пока метод для переопределения. TODO: сделать базовым
-     */
-    public void createHistory(StateWithAction<A> beforeState, StateWithAction<A> afterState, ActionWithState<S> action) {
-
     }
 
     private void helper(State<S, A> node, S currentState, State<S, A> result) {
