@@ -1,6 +1,8 @@
 package ru.alexeyrand.whoistobuybase.fsm;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import ru.alexeyrand.whoistobuybase.entities.BaseEntity;
 import ru.alexeyrand.whoistobuybase.services.BaseService;
@@ -8,7 +10,6 @@ import ru.alexeyrand.whoistobuybase.services.Historical;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Setter
 @Getter
