@@ -2,34 +2,34 @@ package ru.alexeyrand.whoistobuybase.fsm;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.alexeyrand.whoistobuybase.services.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.alexeyrand.whoistobuybase.services.Historical;
 
 
 @Getter
 @Setter
+@Component
 public abstract class BaseStateMachineFactory<S extends StateWithAction<A>, A extends ActionWithState<S>, E extends Stateful<S>> {
 
-    Historical<S, A> historicalService;
+    @Autowired(required = false)
+    private Historical<S, A> historicalService;
 
     public BaseStateMachineFactory() {
 
     }
 
     public FinalStateMachine<S, A, E> createStateMachine() {
+        return createStateMachine(false);
+    }
+
+    public FinalStateMachine<S, A, E> createStateMachine(boolean isHistorical) {
         init();
         FinalStateMachine<S, A, E> fsm = defineStateMachine();
-
+        fsm.setHistorical(isHistorical);
         if (historicalService != null)
             fsm.setHistoricalService(historicalService);
         return fsm;
-    }
-
-    /**
-     * Определяет возможность вести историю изменения состояния сущности в базе данных
-     * */
-    public void addHistory(Historical<S, A> historyService) {
-        this.historicalService = historyService;
     }
 
     /**
