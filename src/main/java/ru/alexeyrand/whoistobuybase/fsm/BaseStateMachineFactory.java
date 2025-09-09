@@ -20,13 +20,9 @@ public abstract class BaseStateMachineFactory<S extends StateWithAction<A>, A ex
     }
 
     public FinalStateMachine<S, A, E> createStateMachine() {
-        return createStateMachine(false);
-    }
-
-    public FinalStateMachine<S, A, E> createStateMachine(boolean isHistorical) {
         init();
         FinalStateMachine<S, A, E> fsm = defineStateMachine();
-        fsm.setHistorical(isHistorical);
+
         if (historicalService != null)
             fsm.setHistoricalService(historicalService);
         return fsm;
