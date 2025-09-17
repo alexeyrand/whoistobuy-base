@@ -30,10 +30,10 @@ public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWit
         alreadyPass.clear();
         State<S, A> result = new State<>();
         S currentState = entity.getState();
-        helper(head, currentState, result);
-        S s = result.getState();
+//        helper(head, currentState, result);
+//        S s = result.getState();
 
-        if (s.getActionList().contains(action)) {
+        if (currentState.getActionList().contains(action)) {
             S newState = action.getState();
             entity.setState(newState);
             if (isHistorical && historicalService != null) {
@@ -45,17 +45,17 @@ public class FinalStateMachine<S extends StateWithAction<A>, A extends ActionWit
         return entity;
     }
 
-    private void helper(State<S, A> node, S currentState, State<S, A> result) {
-        if (node.getState() == currentState) {
-            result.setState(node.getState());
-        }
-        alreadyPass.add(node.getState());
-        if (node.getNodes() != null && !node.getNodes().isEmpty() && result.getState() != node.getState()) {
-            List<State<S, A>> nodes = node.getNodes();
-            for (State<S, A> n : nodes) {
-                if (!alreadyPass.contains(n.getState()))
-                    helper(n, currentState, result);
-            }
-        }
-    }
+//    private void helper(State<S, A> node, S currentState, State<S, A> result) {
+//        if (node.getState() == currentState) {
+//            result.setState(node.getState());
+//        }
+//        alreadyPass.add(node.getState());
+//        if (node.getNodes() != null && !node.getNodes().isEmpty() && result.getState() != node.getState()) {
+//            List<State<S, A>> nodes = node.getNodes();
+//            for (State<S, A> n : nodes) {
+//                if (!alreadyPass.contains(n.getState()))
+//                    helper(n, currentState, result);
+//            }
+//        }
+//    }
 }

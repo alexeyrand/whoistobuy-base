@@ -20,19 +20,13 @@ public abstract class BaseStateMachineFactory<S extends StateWithAction<A>, A ex
     }
 
     public FinalStateMachine<S, A, E> createStateMachine() {
-        init();
-        FinalStateMachine<S, A, E> fsm = defineStateMachine();
-
+        FinalStateMachine<S, A, E> fsm = new FinalStateMachine<>();
+        defineStateMachine();
         if (historicalService != null)
             fsm.setHistoricalService(historicalService);
         return fsm;
     }
 
-    /**
-     * Возвращает машину состояний - класс для работы с состояниями сущности
-     * */
-    public abstract FinalStateMachine<S, A, E> defineStateMachine();
-
-    public abstract void init();
+    public abstract void defineStateMachine();
 
 }
