@@ -10,7 +10,6 @@ import ru.alexeyrand.whoistobuybase.exceptions.LogicalException;
 import ru.alexeyrand.whoistobuybase.services.BaseService;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 public abstract class BaseRestController<T extends BaseEntity> implements IHandleException {
